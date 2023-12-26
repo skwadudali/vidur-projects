@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Input/Output Example</title>
+</head>
+<body>
+
+  <h2>File Input</h2>
+  <input type="file" id="fileInput">
+
+  <h2>File Output</h2>
+  <textarea id="output" rows="10" cols="50"></textarea>
+
+  <h2>Create and Download File</h2>
+  <button id="downloadButton">Download Text File</button>
+
+  <script src="script.js"></script>
+</body>
+<script>document.addEventListener('DOMContentLoaded', function () {
+    // File Input
+    const fileInput = document.getElementById('fileInput');
+    fileInput.addEventListener('change', function (event) {
+      const selectedFile = event.target.files[0];
+  
+      if (selectedFile) {
+        readAndDisplayFile(selectedFile);
+      }
+    });
+  
+    // File Output
+    function readAndDisplayFile(file) {
+      const reader = new FileReader();
+  
+      reader.onload = function (event) {
+        const fileContent = event.target.result;
+        const outputTextarea = document.getElementById('output');
+        outputTextarea.value = fileContent;
+      };
+  
+      reader.readAsText(file);
+    }
+  
+    // Create and Download File
+    const downloadButton = document.getElementById('downloadButton');
+    downloadButton.addEventListener('click', function () {
+      const content = 'This is the content of the file.';
+  
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+  
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'example.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+  
+      URL.revokeObjectURL(url);
+    });
+  });
+  </script>
+</html>

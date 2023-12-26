@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>java script vidur class</p>
+</body>
+<script>
+    const testString = 'Hello123 @#$ This is an exactString match. test@example.com https://www.example.com 12/25/2023';
+
+// Matching Digits
+console.log(/\d+/.test(testString)); // true
+
+// Matching Non-Digits
+console.log(/\D+/.test(testString)); // true new
+
+// Matching Word Characters
+console.log(/\w+/.test(testString)); // true
+
+// Matching Non-Word Characters
+console.log(/\W+/.test(testString)); // true
+
+// Matching Whitespace Characters
+console.log(/\s+/.test(testString)); // true
+
+// Matching Non-Whitespace Characters
+console.log(/\S+/.test(testString)); // true
+
+// Matching a Specific String
+console.log(/exactString/.test(testString)); // true
+
+// Matching Email Addresses
+console.log(/[\w\.-]+@[\w\.-]+/.test(testString)); // true
+
+// Matching URLs
+console.log(/(https?|ftp):\/\/[^\s/$.?#].[^\s]*/.test(testString)); // true
+
+// Matching Dates (MM/DD/YYYY)
+console.log(/^(0[1-9]|1[0-2])\/(0[1-9]|[1-2][0-9]|3[0-1])\/\d{4}$/.test(testString)); // true
+
+</script>
+</html>
